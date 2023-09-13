@@ -79,7 +79,7 @@
       <!-- content begin -->
       <div id="content" class="no-padding">
         <!-- section begin -->
-        <section id="section-intro-2" class="no-padding autoheight light-text let-it-snow" data-stellar-background-ratio="0.5">
+        <section id="section-intro-2" class="no-padding autoheight light-text" data-stellar-background-ratio="0.5">
           <div class="center-y">
             <div class="inner text-center">
               <!--                        <div class="sub-intro-text"><span class="text-white">Warm regards from GoCargo management</span></div>-->
@@ -206,24 +206,24 @@
           <div class="row">
             <div class="container-fluid">
               <section class="logo-carousel slider" data-arrows="true">
-                <div class="slide"><img src="bles-assests/logos/1.jpg" /></div>
-                <div class="slide"><img src="bles-assests/logos/2.png" /></div>
-                <div class="slide"><img src="bles-assests/logos/30.png" /></div>
-                <div class="slide"><img src="bles-assests/logos/4.jpg" /></div>
-                <div class="slide"><img src="bles-assests/logos/5.png" /></div>
-                <div class="slide"><img src="bles-assests/logos/6.jpg" /></div>
-                <div class="slide"><img src="bles-assests/logos/1.jpg" /></div>
-                <div class="slide"><img src="bles-assests/logos/2.png" /></div>
-                <div class="slide"><img src="bles-assests/logos/30.png" /></div>
-                <div class="slide"><img src="bles-assests/logos/4.jpg" /></div>
-                <div class="slide"><img src="bles-assests/logos/5.png" /></div>
-                <div class="slide"><img src="bles-assests/logos/6.jpg" /></div>
-                <div class="slide"><img src="bles-assests/logos/1.jpg" /></div>
-                <div class="slide"><img src="bles-assests/logos/2.png" /></div>
-                <div class="slide"><img src="bles-assests/logos/30.png" /></div>
-                <div class="slide"><img src="bles-assests/logos/4.jpg" /></div>
-                <div class="slide"><img src="bles-assests/logos/5.png" /></div>
-                <div class="slide"><img src="bles-assests/logos/6.jpg" /></div>
+                <div class="slide"><img src="assests/logos/1.jpg" /></div>
+                <div class="slide"><img src="assests/logos/2.png" /></div>
+                <div class="slide"><img src="assests/logos/30.png" /></div>
+                <div class="slide"><img src="assests/logos/4.jpg" /></div>
+                <div class="slide"><img src="assests/logos/5.png" /></div>
+                <div class="slide"><img src="assests/logos/6.jpg" /></div>
+                <div class="slide"><img src="assests/logos/1.jpg" /></div>
+                <div class="slide"><img src="assests/logos/2.png" /></div>
+                <div class="slide"><img src="assests/logos/30.png" /></div>
+                <div class="slide"><img src="assests/logos/4.jpg" /></div>
+                <div class="slide"><img src="assests/logos/5.png" /></div>
+                <div class="slide"><img src="assests/logos/6.jpg" /></div>
+                <div class="slide"><img src="assests/logos/1.jpg" /></div>
+                <div class="slide"><img src="assests/logos/2.png" /></div>
+                <div class="slide"><img src="assests/logos/30.png" /></div>
+                <div class="slide"><img src="assests/logos/4.jpg" /></div>
+                <div class="slide"><img src="assests/logos/5.png" /></div>
+                <div class="slide"><img src="assests/logos/6.jpg" /></div>
               </section>
             </div>
           </div>
@@ -344,54 +344,5 @@
     <script src="js/revslider-custom.js"></script>
     <!-- Slick Slider JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
-
-    <!-- snow fx -->
-    <script src="js/let-it-snow.min.js"></script>
-
-    <script>
-      $.letItSnow(".let-it-snow", {
-        stickyFlakes: "lis-flake--js",
-        makeFlakes: false,
-        sticky: true,
-      });
-
-      $(document).ready(function () {
-        $(".logo-carousel").slick({
-          slidesToShow: 6,
-          slidesToScroll: 1,
-          autoplay: true,
-          autoplaySpeed: 1000,
-          arrows: false,
-          dots: false,
-          pauseOnHover: false,
-          responsive: [
-            {
-              breakpoint: 768,
-              settings: {
-                slidesToShow: 4,
-              },
-            },
-            {
-              breakpoint: 520,
-              settings: {
-                slidesToShow: 2,
-                slidesToScroll: 1,
-              },
-            },
-          ],
-        });
-      });
-
-      if (window.matchMedia("(max-width: 700px)").matches) {
-        document.getElementById("mainmenu").innerHTML = `
-        <li><a href="contact.html">צור קשר</a></li>
-        <li><a href="gallery.html">גלריה</a></li>
-        <li><a href="about.html">מי אנחנו</a></li>
-        <li><a href="services.html">שירותי הובלה</a></li>
-        <li><a href="storage-page.html">שירותי אחסון</a></li>
-        <li><a href="packing-page.html">אספקת חומרי אריזה</a></li>
-        `;
-      }
-    </script>
   </body>
 </html>
