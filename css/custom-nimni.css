@@ -1,86 +1,83 @@
 @charset "utf-8";
 
-.home-page-services h2, .home-page-services p {
-    float: right;
-    direction: rtl;
+.home-page-services h2,
+.home-page-services p {
+  float: right;
+  direction: rtl;
 }
 
-.direction-rtl{
-    direction: rtl;
+.direction-rtl {
+  direction: rtl;
 }
 
 .all-services-box-container {
-    display: flex!important;
-
-
+  display: flex !important;
 }
-.all-services-box-container .text{
-    height: 270px;
+.all-services-box-container .text {
+  height: 270px;
 }
-.all-services-box-container a{
-    position: absolute;
-    bottom: 0;
+.all-services-box-container a {
+  position: absolute;
+  bottom: 0;
 }
 
+@media screen and (max-width: 992px) {
+  .all-services-box-container {
+    display: block !important;
+  }
+  .all-services-box-container .text {
+    height: initial;
+  }
+  .all-services-box-container a {
+    position: initial;
+  }
 
-@media screen and (max-width: 992px){
-    .all-services-box-container{
-        display: block!important;
-    }
-    .all-services-box-container .text{
-        height: initial;
-    }
-    .all-services-box-container a{
-        position: initial;
+  .center-page-logo {
+    display: none !important;
+  }
 
-    }
-
-    .center-page-logo{
-        display: none!important;
-    }
-
-    .center-page-contact-btn{
-        margin-bottom: 0!important;
-        padding-top: 0!important;
-    }
+  .center-page-contact-btn {
+    margin-bottom: 0 !important;
+    padding-top: 0 !important;
+  }
 }
 
 .all-services-box-container .btn-text:after {
-    content: "\f177";
-    font-family: "FontAwesome";
-    margin-right: 10px;
+  content: "\f177";
+  font-family: "FontAwesome";
+  margin-right: 10px;
 }
 
-#contact-form-wrapper.footer-contact-form-wrapper{
-    background: transparent;
-    padding: 0;
+#contact-form-wrapper.footer-contact-form-wrapper {
+  background: transparent;
+  padding: 0;
 }
 
-#contact-form-wrapper.footer-contact-form-wrapper #contact .col-md-4 li{
-    padding-right: 0;
+#contact-form-wrapper.footer-contact-form-wrapper #contact .col-md-4 li {
+  padding-right: 0;
 }
 
-.logo-1{
-    vertical-align: baseline!important;
+.logo-1 {
+  vertical-align: baseline !important;
 }
 .thumbnail > img {
-    width: 100%;
-    max-height: 280px;
-    min-height: 280px;
+  width: 100%;
+  max-height: 280px;
+  min-height: 280px;
 }
 .mobile-icon {
-    padding-top: 13px;
+  padding-top: 13px;
 }
 @media screen and (min-width: 992px) {
-    .mobile-icon {
-        display: none!important;
-    }
+  .mobile-icon {
+    display: none !important;
+  }
 }
 .white-popup {
-    position: relative;
-    background: #FFF;
-    padding: 20px;
-    width: auto;
-    max-width: 500px;
-    margin: 20px auto;
+  position: relative;
+  background: #fff;
+  padding: 20px;
+  width: auto;
+  max-width: 500px;
+  margin: 20px auto;
 }

@@ -3073,7 +3073,7 @@ background: url(../img/bg_full_3.jpg) center fixed;
 }
 
 #bg-service-1 {
-background: url(../bles-assests/pexels-karolina-grabowska-4498136.jpg) rgba(157 154 115 / 0.8);
+background: url(../assests/pexels-karolina-grabowska-4498136.jpg) rgba(157 154 115 / 0.8);
 background-size: cover;
 background-position: 50% 42%;
 background-blend-mode: multiply;
@@ -3090,7 +3090,7 @@ background-size: cover;
 }
 
 #bg-service-3 {
-	background: url(../bles-assests/pexels-quintin-gellar-2199293.jpg) top center, rgba(64 138 165 / 92%);
+	background: url(../assests/pexels-quintin-gellar-2199293.jpg) top center, rgba(64 138 165 / 92%);
 	background-size: cover;
 	background-blend-mode: multiply;
 }
@@ -3154,7 +3154,7 @@ background: #D03232;
 }
 
 #explore-3.side-bg .background-image {
-background: url('../img/bg/bg_square_3.png');
+background: url('../assests/logos/bg_square_3.png');
 }
 
 #section-faq {
@@ -3185,13 +3185,13 @@ background: url('../img/gallery/img11.jpeg');
 }
 
 #section-intro {
-	background: url(../bles-assests/shutterstock_1217478364.jpg) rgba(1, 0, 0, 0.08);
+	background: url(../assests/shutterstock_1217478364.jpg) rgba(1, 0, 0, 0.08);
 	background-size: cover;
 	background-blend-mode: multiply!important;
 }
 
 #section-intro-2{
-	background: url(../bles-assests/shutterstock_1217478364.jpg) rgba(1, 0, 0, 0.08);
+	background: url(../assests/shutterstock_1217478364.jpg) rgba(1, 0, 0, 0.08);
 }
 
 .sub-intro-text{
