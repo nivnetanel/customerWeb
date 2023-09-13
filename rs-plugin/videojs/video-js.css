@@ -1,7 +1,7 @@
 /*!
-Video.js Default Styles (http://videojs.com)
+Video.js Default Styles (https://videojs.com)
 Version 4.4.1
-Create your own skin at http://designer.videojs.com
+Create your own skin at https://designer.videojs.com
 */
 /* SKIN
 ================================================================================
@@ -19,9 +19,9 @@ The control icons are from a custom font. Each icon corresponds to a character
 (e.g. "\e001"). Font icons allow for easy scaling and coloring of icons.
 */
 @font-face {
-  font-family: 'VideoJS';
-  src: url('font/vjs.eot');
-  src: url('font/vjs.eot?#iefix') format('embedded-opentype'), url('font/vjs.woff') format('woff'), url('font/vjs.ttf') format('truetype');
+  font-family: "VideoJS";
+  src: url("font/vjs.eot");
+  src: url("font/vjs.eot?#iefix") format("embedded-opentype"), url("font/vjs.woff") format("woff"), url("font/vjs.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
@@ -84,7 +84,7 @@ The default control bar that is a container for most of the controls.
   left: 0;
   right: 0;
   /* Height includes any margin you want above or below control items */
-  height: 3.0em;
+  height: 3em;
   /* background-color-with-alpha */
   background-color: #07141e;
   background-color: rgba(7, 20, 30, 0.7);
@@ -122,7 +122,7 @@ The default control bar that is a container for most of the controls.
 /* IE8 is flakey with fonts, and you have to change the actual content to force
 fonts to show/hide properly.
   - "\9" IE8 hack didn't work for this
-  - Found in XP IE8 from http://modern.ie. Does not show up in "IE8 mode" in IE9
+  - Found in XP IE8 from https://modern.ie. Does not show up in "IE8 mode" in IE9
 */
 @media \0screen {
   .vjs-default-skin.vjs-user-inactive.vjs-playing .vjs-control-bar :before {
@@ -137,7 +137,7 @@ fonts to show/hide properly.
   text-align: center;
   margin: 0;
   padding: 0;
-  height: 3.0em;
+  height: 3em;
   width: 4em;
 }
 /* FontAwsome button icons */
@@ -162,7 +162,6 @@ fonts to show/hide properly.
   /*  outline: 0; */
   /* keyboard-only users cannot see the focus on several of the UI elements when
   this is set to 0 */
-
 }
 /* Hide control text visually, but have it available for screenreaders */
 .vjs-default-skin .vjs-control-text {
@@ -269,7 +268,7 @@ fonts to show/hide properly.
     This simply changes the overall font for the progress bar, and this
     updates both the em-based widths and heights, as wells as the icon font */
 .vjs-default-skin:hover .vjs-progress-control {
-  font-size: .9em;
+  font-size: 0.9em;
   /* Even though we're not changing the top/height, we need to include them in
       the transition so they're handled correctly. */
 
@@ -299,7 +298,7 @@ fonts to show/hide properly.
   /*
     Using a data URI to create the white diagonal lines with a transparent
       background. Surprisingly works in IE8.
-      Created using http://www.patternify.com
+      Created using https://www.patternify.com
     Changing the first color value will change the bar color.
     Also using a paralax effect to make the lines move backwards.
       The -50% left position makes that happen.
@@ -359,7 +358,7 @@ fonts to show/hide properly.
 /* Big Play Button (play button at start)
 --------------------------------------------------------------------------------
 Positioning of the play button in the center or other corners can be done more
-easily in the skin designer. http://designer.videojs.com/
+easily in the skin designer. https://designer.videojs.com/
 */
 .vjs-default-skin .vjs-big-play-button {
   left: 0.5em;
@@ -534,7 +533,6 @@ easily in the skin designer. http://designer.videojs.com/
 
   border-top-color: rgba(7, 40, 50, 0.5);
   /* Same as ul background */
-
 }
 /* Button Pop-up Menu */
 .vjs-default-skin .vjs-menu-button .vjs-menu .vjs-menu-content {
@@ -676,7 +674,7 @@ body.vjs-full-window {
   padding: 0;
   margin: 0;
   height: 100%;
-  /* Fix for IE6 full-window. http://www.cssplay.co.uk/layouts/fixed.html */
+  /* Fix for IE6 full-window. https://www.cssplay.co.uk/layouts/fixed.html */
   overflow-y: auto;
 }
 .video-js.vjs-fullscreen {
