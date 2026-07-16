@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="he">
 
 <head>
     <meta charset="utf-8">
@@ -60,7 +60,7 @@
             <div class="container">
                 <span id="menu-btn"></span>
                 <a href="index.html">
-                    <img src="img/logo/logo-no-text-color.png" alt="" width="170" class="mobile-icon">
+                    <img src="img/logo/logo-no-text-color.png" alt="נימני הובלות" width="170" class="mobile-icon">
                 </a>
                 <div class="row">
                     <div class="col-md-3 social-body">
@@ -84,7 +84,7 @@
                                 <li style="z-index: 1000"><a href="contact.html">צור קשר</a></li>
                                 <li style="z-index: 1000"><a href="gallery.html">גלריה</a></li>
                                 <li style="z-index: 1000"><a href="about.html">מי אנחנו</a></li>
-                                <li><a href="services.html">שירות</a></li>
+                                <li><a href="services.html">שירותים</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -94,8 +94,8 @@
                         <div id="logo" class="logo-desktop">
                             <div class="inner">
                                 <a href="index.html">
-                                    <img src="img/logo/logo-no-text-white.png" alt="" width="170" class="logo-1">
-                                    <img src="img/logo/logo-no-text-color.png" alt="" width="170"
+                                    <img src="img/logo/logo-no-text-white.png" alt="נימני הובלות" width="170" class="logo-1">
+                                    <img src="img/logo/logo-no-text-color.png" alt="נימני הובלות" width="170"
                                         class="logo-2 hide-on-mobile">
                                 </a>
 
@@ -138,17 +138,24 @@
                         <div id="contact-form-wrapper">
                             <div class="contact_form_holder direction-rtl">
                   <form action="https://formspree.io/f/xzblzkye" method="POST" class="form-ui" lang="he">
-                    <input type="text" class="form-control" name="name" id="name" placeholder="שם" required />
+                    <label class="form-label" for="name">שם מלא *</label>
+                    <input type="text" class="form-control" name="name" id="name" placeholder="שם" required autocomplete="name" />
 
-                    <input type="email" class="form-control" name="email" id="email" placeholder="אימייל" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}" />
+                    <label class="form-label" for="email">אימייל *</label>
+                    <input type="email" class="form-control" name="email" id="email" placeholder="אימייל" required autocomplete="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}" />
 
-                    <input type="tel" class="form-control" name="phone" id="phone" placeholder="מספר טלפון" maxlength="10" pattern="[0-9]{10}" />
+                    <label class="form-label" for="phone">מספר טלפון</label>
+                    <input type="tel" class="form-control" name="phone" id="phone" placeholder="מספר טלפון" maxlength="10" pattern="[0-9]{10}" inputmode="numeric" autocomplete="tel" />
 
-                    <textarea cols="10" rows="10" name="message" id="message" class="form-control" placeholder="הודעה"></textarea>
+                    <label class="form-label" for="message">הודעה</label>
+                    <textarea cols="10" rows="10" name="message" id="message" class="form-control" placeholder="ספרו לנו על ההובלה — מאיפה, לאיפה ומתי?"></textarea>
 
-                    <input type="file" class="form-control" accept="video/mp4,video/x-m4v,video/*" style="direction: ltr" name="file" id="files" multiple placeholder="הוסף וידאו" />
+                    <label class="form-label" for="files">סרטון תכולה (לא חובה)</label>
+                    <p class="form-hint">רוצים הצעת מחיר מדויקת? צלמו סרטון קצר של תכולת הדירה וצרפו אותו כאן.</p>
+                    <input type="file" class="form-control" accept="video/mp4,video/x-m4v,video/*" style="direction: ltr" name="file" id="files" multiple />
 
-                    <input type="text" class="form-control" name="itemsList" id="itemsList" placeholder="רשימת פריטים" />
+                    <label class="form-label" for="itemsList">רשימת פריטים</label>
+                    <input type="text" class="form-control" name="itemsList" id="itemsList" placeholder="לדוגמה: ספה, מקרר, 10 ארגזים" />
 
                     <p>סרטון לדוגמא:</p>
                     <iframe width="560" height="315" src="https://www.youtube.com/embed/-R_I7txXC7I?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -167,19 +174,15 @@
                     <div class="col-md-6">
 
 
-                        <div class="text">
-                            <h2 class="direction-rtl location-approved-header"></h2>
-                            <h2 class="direction-rtl ">השאיר את פרטיך ונציגנו יחזור אליך בהקדם! <br></h2>
-                            <h2 class="direction-rtl "><br>או התקשרו ל 0542-426-661 </h2>
-                            <h2 class="direction-rtl "> או שילחו אימייל ל <a
-                                    href="mailto:nimnimoving@gmail.com">nimnimoving@gmail.com</a>
-                            </h2>
-                            <br>
-                            <br>
-                            <h2 class="direction-rtl ">שעות הפעילות:</h2>
-                            <h2 class="direction-rtl ">ימי א'-ה': 08:00 – 19:00 ימי ו': 08:00 – 14:00</h2>
-
-
+                        <div class="text direction-rtl contact-info">
+                            <h2 class="location-approved-header"></h2>
+                            <h2>השאירו פרטים ונחזור אליכם בהקדם!</h2>
+                            <p class="contact-line"><i class="fa fa-phone" aria-hidden="true"></i> התקשרו: <a href="tel:0542-426-661">0542-426-661</a></p>
+                            <p class="contact-line"><i class="fa-solid fa-at" aria-hidden="true"></i> אימייל: <a href="mailto:nimnimoving@gmail.com">nimnimoving@gmail.com</a></p>
+                            <p class="contact-line"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> וואטסאפ: <a href="https://api.whatsapp.com/send?phone=972542426661" target="_blank" rel="noreferrer">שלחו לנו הודעה</a></p>
+                            <h3>שעות הפעילות</h3>
+                            <p class="contact-line">ימי א'-ה': 08:00 – 19:00</p>
+                            <p class="contact-line">יום ו': 08:00 – 14:00</p>
                         </div>
 
                     </div>
@@ -233,7 +236,7 @@
 
 
                     <div class="col-md-2  direction-rtl">
-                        <h3>שירות</h3>
+                        <h3>שירותים</h3>
                         <div class="tiny-border"></div>
                         <ul>
                             <li><a href="services.html">שירותי הובלה</a></li>
@@ -244,7 +247,7 @@
                         <div class="divider-single"></div>
                         <div class="divider-single"></div>
                         <a href="index.html">
-                            <img src="img/logo/logo-no-text-white.png" alt="" width="300" class="logo-1">
+                            <img src="img/logo/logo-no-text-white.png" alt="נימני הובלות" width="300" class="logo-1">
                         </a>
                     </div>
                     <div class="col-md-3  direction-rtl">
@@ -264,6 +267,11 @@
         <!-- footer close -->
     </div>
 
+
+    <!-- WhatsApp floating button -->
+    <a href="https://api.whatsapp.com/send?phone=972542426661&text=%D7%94%D7%99%D7%99%F0%9F%98%80%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%91%D7%A8%D7%A8%20%D7%9C%D7%92%D7%91%D7%99%20%D7%94%D7%95%D7%91%D7%9C%D7%94" class="float" target="_blank" rel="noreferrer" aria-label="שלחו לנו הודעה בוואטסאפ">
+      <i class="fa-brands fa-whatsapp my-float" aria-hidden="true"></i>
+    </a>
 
     <!-- Load JS Files -->
     <script src="js/jquery.min.js"></script>

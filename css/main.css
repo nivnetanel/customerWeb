@@ -18,3 +18,4 @@ Version:	1.0
 @import url("style.css"); /* main css for this template, if you want to adjust template design you can edit this file */
 @import url("rev-settings.css"); /* custom css file for Revolution Slider plugin, you can modify slider typography from this file */
 @import url("custom-nimni.css");
+@import url("ui-modern.css"); /* modern UI/UX overhaul layer — keep last so it overrides */
