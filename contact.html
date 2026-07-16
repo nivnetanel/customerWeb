@@ -309,6 +309,42 @@
             $('.location-approved-header').text(location != "" ? "אנחנו מובילים באיזור ה" + location + "!" : "");
         });
     </script>
+				<!-- My Nimni - lead to Firebase -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script>
+(function () {
+  firebase.initializeApp({
+    apiKey: "AIzaSyAgPCps_tJ5tUtCD5GPfDknCpsISym2HoA",
+    projectId: "my-nimni",
+    appId: "1:728066755188:web:f3800f0883f57779791f21",
+  });
+  var db = firebase.firestore();
+  var form = document.querySelector('form.form-ui');
+  if (!form) return;
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var notes = (document.getElementById('message').value || '').trim();
+    var items = (document.getElementById('itemsList').value || '').trim();
+    if (items) notes = (notes ? notes + '\n' : '') + 'רשימת פריטים: ' + items;
+    var lead = {
+      name: (document.getElementById('name').value || '').trim(),
+      phone: (document.getElementById('phone').value || '').trim(),
+      email: (document.getElementById('email').value || '').trim(),
+      source: 'website1',
+      status: 'new',
+      serviceTypes: [],
+      notes: notes,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+    };
+    var finish = function () { form.submit(); };
+    Promise.race([
+      db.collection('leads').add(lead),
+      new Promise(function (r) { setTimeout(r, 3000); }),
+    ]).then(finish, finish);
+  });
+})();
+</script>
 </body>
 
 </html>
