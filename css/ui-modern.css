@@ -1,0 +1,629 @@
+@charset "utf-8";
+/* ============================================================
+   UI-MODERN — שכבת שדרוג עיצובית לכל האתר
+   נטען אחרון מתוך main.css ולכן דורס את התבנית הישנה.
+   ============================================================ */
+
+:root {
+  --brand: #d03232;
+  --brand-dark: #b02828;
+  --brand-soft: rgba(208, 50, 50, 0.08);
+  --ink: #1c1f24;
+  --ink-soft: #4b5563;
+  --line: #e7e9ee;
+  --card-shadow: 0 2px 10px rgba(16, 24, 40, 0.06);
+  --card-shadow-hover: 0 14px 34px rgba(16, 24, 40, 0.14);
+  --radius: 12px;
+  --radius-lg: 16px;
+}
+
+/* ---------- בסיס וטיפוגרפיה ---------- */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* עברית לא אוהבת ריווח אותיות ואותיות גדולות של התבנית */
+h1, h2, h3, h4, h5, h6 {
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+::selection {
+  background: var(--brand);
+  color: #fff;
+}
+
+/* נגישות — טבעת פוקוס ברורה למקלדת */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+.form-control:focus-visible {
+  outline: 3px solid rgba(208, 50, 50, 0.55);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ---------- פס עליון (רשתות חברתיות, מוצג במובייל בלבד) ---------- */
+/* לא נוגעים ב-display — style.css מסתיר אותו בדסקטופ ומציג במובייל */
+header .social-connect {
+  height: auto !important;
+  min-height: 36px;
+  background: linear-gradient(90deg, #b02828, #d03232 55%, #b02828) !important;
+  text-align: center;
+}
+
+header .social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 34px;
+  min-height: 34px;
+  border-radius: 8px;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+header .social a:hover {
+  background: rgba(255, 255, 255, 0.14);
+  transform: translateY(-1px);
+}
+
+/* ---------- תפריט ראשי ---------- */
+#mainmenu > li > a {
+  position: relative;
+  font-weight: 500;
+}
+
+#mainmenu > li > a::after {
+  content: "";
+  position: absolute;
+  right: 50%;
+  transform: translateX(50%);
+  bottom: 2px;
+  width: 0;
+  height: 3px;
+  border-radius: 3px;
+  background: var(--brand);
+  transition: width 0.25s ease;
+}
+
+#mainmenu > li > a:hover::after,
+#mainmenu > li > a:focus-visible::after {
+  width: 55%;
+}
+
+/* הכותרת הצפה (clone) — זכוכית מודרנית */
+header.clone {
+  background: rgba(255, 255, 255, 0.92);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+  box-shadow: 0 4px 24px rgba(16, 24, 40, 0.08);
+}
+
+/* ---------- כפתורים ---------- */
+.btn-custom,
+input.btn-custom {
+  background: var(--brand) !important;
+  color: #fff !important;
+  border: 0;
+  border-radius: 10px;
+  padding: 10px 28px;
+  font-weight: 600;
+  font-size: 16px;
+  box-shadow: 0 4px 14px rgba(208, 50, 50, 0.35);
+  transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: pointer;
+}
+
+.btn-custom:hover,
+input.btn-custom:hover,
+.btn-custom:focus,
+input.btn-custom:focus {
+  background: var(--brand-dark) !important;
+  color: #fff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(208, 50, 50, 0.45);
+  text-decoration: none;
+}
+
+.btn-border-light {
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  border-radius: 10px;
+  font-weight: 600;
+  transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease,
+    transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn-border-light:hover,
+.btn-border-light:focus {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(208, 50, 50, 0.4);
+  text-decoration: none;
+}
+
+a.btn-text {
+  color: var(--brand);
+  letter-spacing: 0;
+  font-size: 16px;
+  transition: color 0.2s ease;
+}
+
+a.btn-text:hover {
+  color: var(--brand-dark);
+}
+
+.all-services-box-container .btn-text:after {
+  display: inline-block;
+  transition: transform 0.25s ease;
+}
+
+.all-services-box-container .btn-text:hover:after {
+  transform: translateX(-5px);
+}
+
+/* ---------- עמוד הבית: הירו ---------- */
+#section-intro-2 .typed,
+#section-intro-2 .typed-cursor {
+  text-shadow: 0 2px 26px rgba(0, 0, 0, 0.55);
+}
+
+.hero-cta {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 30px;
+  padding: 0 16px;
+}
+
+.hero-cta a {
+  display: inline-block;
+  padding: 12px 30px;
+  font-size: 17px;
+}
+
+.hero-cta .btn-border-light {
+  direction: ltr;
+}
+
+/* ---------- עמוד הבית: קוביות שירותים ---------- */
+#bg-service-1,
+#bg-service-2,
+#bg-service-3 {
+  position: relative;
+}
+
+#bg-service-1::before,
+#bg-service-2::before,
+#bg-service-3::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.35));
+  pointer-events: none;
+}
+
+#bg-service-1 .inner,
+#bg-service-2 .inner,
+#bg-service-3 .inner {
+  position: relative;
+  z-index: 1;
+}
+
+.home-page-services h2 {
+  font-size: 28px;
+  font-weight: 700;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.45);
+}
+
+.home-page-services p {
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
+  line-height: 1.8;
+}
+
+/* ---------- פס קריאה לפעולה ---------- */
+#section-tracking {
+  background: linear-gradient(135deg, #15181b, #23282e);
+}
+
+#section-tracking .btn-border-light {
+  padding: 12px 32px;
+  font-size: 17px;
+}
+
+/* ---------- המלצות ---------- */
+#testi-carousel blockquote {
+  font-style: normal;
+  line-height: 1.85;
+  font-size: 17px;
+}
+
+.testi-slider .testi-by {
+  font-weight: 600;
+  color: #ffb3b3;
+}
+
+.testi-slider .testi-by::before {
+  content: "— ";
+}
+
+/* ---------- קרוסלת לוגואים ---------- */
+.logo-carousel {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  padding: 18px 10px;
+  margin: 28px auto 44px;
+  max-width: 1140px;
+}
+
+.logo-carousel .slide {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  min-height: 70px;
+  padding: 0 14px;
+}
+
+.logo-carousel .slide img {
+  max-width: 100%;
+  max-height: 60px;
+  width: auto;
+  object-fit: contain;
+  filter: grayscale(1);
+  opacity: 0.7;
+  transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+.logo-carousel .slide:hover img {
+  filter: grayscale(0);
+  opacity: 1;
+}
+
+/* ---------- כותרות עמודים פנימיים ---------- */
+#subheader .overlay {
+  background: linear-gradient(180deg, rgba(8, 10, 14, 0.6), rgba(8, 10, 14, 0.35));
+  padding: 110px 0 70px 0;
+}
+
+#subheader h1 {
+  font-size: 44px;
+  font-weight: 700;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+}
+
+.small-border {
+  width: 64px;
+  height: 4px;
+  border-radius: 3px;
+  background: var(--brand);
+}
+
+.tiny-border {
+  background: var(--brand);
+  height: 3px;
+  width: 42px;
+  border-radius: 2px;
+}
+
+/* ---------- כרטיסי שירותים (עמוד שירותים) ---------- */
+.all-services-box-container .box-with-icon-left {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: flex-start;
+  gap: 18px;
+  direction: rtl;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 26px;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.all-services-box-container .box-with-icon-left:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--card-shadow-hover);
+}
+
+.all-services-box-container .box-with-icon-left > i {
+  float: none;
+  margin: 0;
+  flex: 0 0 auto;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  color: var(--brand);
+  background: var(--brand-soft);
+  border-radius: 14px;
+}
+
+.all-services-box-container .box-with-icon-left .text {
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  border-left: none;
+  border-right: none;
+  position: relative;
+  height: auto;
+  min-height: 240px;
+}
+
+.all-services-box-container .box-with-icon-left .text h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-top: 0;
+}
+
+.all-services-box-container .box-with-icon-left .text p {
+  color: var(--ink-soft);
+}
+
+/* ---------- טפסים ---------- */
+.form-control {
+  border-radius: 10px !important;
+  border: 1.5px solid var(--line);
+  padding: 12px 16px;
+  height: auto;
+  font-size: 16px;
+  background: #fff;
+  color: var(--ink);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-control:focus {
+  border-color: var(--brand);
+  box-shadow: 0 0 0 4px rgba(208, 50, 50, 0.12) !important;
+}
+
+.form-control::placeholder {
+  color: #9aa4b2;
+}
+
+.form-ui {
+  direction: rtl;
+}
+
+.form-ui .form-control {
+  margin-bottom: 14px;
+  width: 100%;
+}
+
+textarea.form-control {
+  min-height: 130px;
+  resize: vertical;
+}
+
+input[type="file"].form-control {
+  padding: 12px;
+  background: #f7f8fa;
+  border-style: dashed;
+  cursor: pointer;
+}
+
+.form-label {
+  display: block;
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: inherit;
+}
+
+.form-hint {
+  font-size: 14px;
+  opacity: 0.8;
+  margin: 4px 0 10px;
+}
+
+/* ---------- עמוד צור קשר: פרטי התקשרות ---------- */
+.contact-info h2 {
+  font-size: 26px;
+  margin-bottom: 18px;
+}
+
+.contact-info .contact-line {
+  font-size: 17px;
+  margin: 10px 0;
+}
+
+.contact-info .contact-line i {
+  color: var(--brand);
+  margin-left: 8px;
+  width: 22px;
+  text-align: center;
+}
+
+.contact-info a {
+  color: var(--brand);
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.contact-info a:hover {
+  color: var(--brand-dark);
+}
+
+.contact-info h3 {
+  margin-top: 28px;
+}
+
+/* סרטוני יוטיוב בטפסים — רספונסיבי במקום רוחב קבוע */
+.form-ui iframe,
+.contact_form_holder iframe {
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  border-radius: var(--radius);
+  border: 0;
+}
+
+/* ---------- פוטר ---------- */
+footer {
+  background: #0d1117;
+  padding: 56px 0 36px 0;
+}
+
+footer h3 {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+footer li {
+  padding: 5px 0;
+}
+
+footer li a {
+  color: #9aa4b2;
+  transition: color 0.2s ease;
+}
+
+footer li a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+footer .social-icons i {
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+footer .social-icons a:hover i {
+  transform: translateY(-2px);
+}
+
+/* ---------- כפתור וואטסאפ צף ---------- */
+.float {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.45);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.float::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: rgba(37, 211, 102, 0.4);
+  animation: whatsapp-pulse 2.2s ease-out infinite;
+  z-index: -1;
+}
+
+.float:hover {
+  transform: scale(1.08);
+  box-shadow: 0 12px 30px rgba(37, 211, 102, 0.55);
+}
+
+.my-float {
+  margin-top: 0;
+}
+
+@keyframes whatsapp-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  70% {
+    transform: scale(1.45);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.45);
+    opacity: 0;
+  }
+}
+
+/* ---------- גלריה ---------- */
+.thumbnail {
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.thumbnail:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--card-shadow-hover);
+}
+
+.thumbnail > img {
+  object-fit: cover;
+}
+
+/* ---------- מובייל ---------- */
+@media screen and (max-width: 992px) {
+  .box-one-third {
+    width: 100%;
+    float: none;
+  }
+
+  .box-one-third .inner {
+    padding: 44px 28px;
+  }
+
+  #subheader h1 {
+    font-size: 34px;
+  }
+
+  .all-services-box-container .box-with-icon-left {
+    margin-bottom: 18px;
+  }
+
+  .all-services-box-container .box-with-icon-left .text {
+    min-height: 0;
+  }
+
+  .all-services-box-container .box-with-icon-left .text a.btn-text {
+    position: static;
+  }
+
+  .hero-cta a {
+    width: 100%;
+    max-width: 340px;
+    text-align: center;
+  }
+
+  .float {
+    width: 54px;
+    height: 54px;
+    bottom: 22px;
+    right: 22px;
+    font-size: 26px;
+  }
+}
+
+/* ---------- העדפת צמצום תנועה ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
