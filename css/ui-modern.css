@@ -613,6 +613,123 @@ footer .social-icons a:hover i {
   }
 }
 
+/* ---------- קישור דילוג לתוכן (נגישות מקלדת) ---------- */
+.skip-link {
+  position: absolute;
+  top: -60px;
+  right: 12px;
+  z-index: 10000;
+  background: var(--brand);
+  color: #fff;
+  padding: 10px 22px;
+  border-radius: 0 0 10px 10px;
+  font-weight: 600;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+  color: #fff;
+  text-decoration: none;
+}
+
+/* ---------- סימון העמוד הנוכחי בתפריט ---------- */
+#mainmenu > li > a.active-page {
+  color: var(--brand) !important;
+}
+
+#mainmenu > li > a.active-page::after {
+  width: 55%;
+}
+
+/* ---------- סרטון הדוגמא בטופס — נפתח רק בלחיצה ---------- */
+.video-example {
+  margin: 4px 0 14px;
+  border: 1.5px dashed rgba(154, 164, 178, 0.5);
+  border-radius: 10px;
+}
+
+.video-example summary {
+  cursor: pointer;
+  padding: 12px 16px;
+  font-weight: 600;
+  color: inherit;
+  transition: color 0.2s ease;
+}
+
+.video-example summary:hover {
+  color: var(--brand);
+}
+
+.video-example[open] {
+  padding: 0 12px 12px;
+}
+
+.video-example iframe {
+  margin-top: 8px;
+}
+
+/* ---------- פס פעולה תחתון במובייל ---------- */
+.mobile-cta-bar {
+  display: none;
+}
+
+@media screen and (max-width: 992px) {
+  .mobile-cta-bar {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 999;
+    display: flex;
+    direction: rtl;
+    padding-bottom: env(safe-area-inset-bottom);
+    box-shadow: 0 -4px 18px rgba(0, 0, 0, 0.22);
+  }
+
+  .mobile-cta-bar a {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 10px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .mobile-cta-bar .cta-call {
+    background: var(--brand);
+  }
+
+  .mobile-cta-bar .cta-call:hover,
+  .mobile-cta-bar .cta-call:focus {
+    background: var(--brand-dark);
+    color: #fff;
+  }
+
+  .mobile-cta-bar .cta-quote {
+    background: #15181b;
+  }
+
+  .mobile-cta-bar .cta-quote:hover,
+  .mobile-cta-bar .cta-quote:focus {
+    background: #23282e;
+    color: #fff;
+  }
+
+  /* להרים את כפתור הוואטסאפ מעל הפס, ולפנות מקום בתחתית העמוד */
+  .float {
+    bottom: calc(76px + env(safe-area-inset-bottom));
+  }
+
+  body {
+    padding-bottom: calc(52px + env(safe-area-inset-bottom));
+  }
+}
+
 /* ---------- העדפת צמצום תנועה ---------- */
 @media (prefers-reduced-motion: reduce) {
   html {

@@ -245,7 +245,7 @@
 
       // Fix for WebKit background rendering bug
       if (options && options.firstLoad && /WebKit/.test(navigator.userAgent)) {
-        $(window).load(function () {
+        $(window).on("load", function () {
           var oldLeft = self._getScrollLeft(),
             oldTop = self._getScrollTop();
 
@@ -261,7 +261,9 @@
       this._setScrollTop(oldTop);
     },
     _detectViewport: function () {
-      var viewportOffsets = this.$viewportElement.offset(),
+      var viewportOffsets = this.$viewportElement[0] === window
+          ? { top: window.pageYOffset || 0, left: window.pageXOffset || 0 }
+          : this.$viewportElement.offset(),
         hasOffsets = viewportOffsets !== null && viewportOffsets !== undefined;
 
       this.viewportWidth = this.$viewportElement.width();

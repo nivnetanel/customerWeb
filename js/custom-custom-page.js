@@ -4,8 +4,14 @@
 jQuery(document).ready(function () {
   "use strict"; // use strict mode
 
-  // hide preloader
-  jQuery("#preloader").delay(500).fadeOut(500);
+
+  // highlight the current page in the main menu
+  var currentPage = window.location.pathname.split("/").pop() || "index.html";
+  jQuery("#mainmenu a").each(function () {
+    if (jQuery(this).attr("href") === currentPage) {
+      jQuery(this).addClass("active-page");
+    }
+  });
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // touch and swipe owl carousel
@@ -71,37 +77,6 @@ jQuery(document).ready(function () {
   // fit video
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   jQuery(".container").fitVids();
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // filtering gallery
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  var $container = jQuery("#gallery-isotope");
-  $container.imagesLoaded(function () {
-    $container.isotope({
-      itemSelector: ".item",
-      filter: "*",
-    });
-  });
-  var $newslist = jQuery("#newslist");
-  $newslist.imagesLoaded(function () {
-    $newslist.isotope({
-      itemSelector: ".item",
-      filter: "*",
-    });
-  });
-  jQuery("#filters a").on("click", function () {
-    var $this = jQuery(this);
-    if ($this.hasClass("selected")) {
-      return false;
-    }
-    var $optionSet = $this.parents();
-    $optionSet.find(".selected").removeClass("selected");
-    $this.addClass("selected");
-    var selector = jQuery(this).attr("data-filter");
-    $container.isotope({
-      filter: selector,
-    });
-    return false;
-  });
   jQuery(".animated").fadeTo(0, 0);
 
   // - - - - - - - - - -
@@ -157,7 +132,7 @@ jQuery(document).ready(function () {
           jQuery(this).parent().find(".pf_text").css("height", h);
         })
         .each(function () {
-          if (this.complete) $(this).load();
+          if (this.complete) $(this).trigger("load");
         });
     });
 
@@ -207,7 +182,6 @@ jQuery(document).ready(function () {
       });
 
     // - - - - - - - - - -
-    jQuery("#gallery-isotope").isotope("reLayout");
     // - - - - - - - - - -
 
     var wh = jQuery(window).height();
@@ -284,12 +258,6 @@ jQuery(document).ready(function () {
       jQuery(this).parent().parent().find(".item").not(this).stop(true).fadeTo(speed, 1);
     });
 
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  // scroll to top
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  jQuery().UItoTop({
-    easingType: "easeInOutExpo",
-  });
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // gallery hover
