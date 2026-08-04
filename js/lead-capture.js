@@ -1,6 +1,7 @@
-// Lead capture — the single pipeline: uploads media to Firebase Storage,
-// then sends one JSON POST to the newLead endpoint. Formspree is
-// disconnected — submit is always intercepted (preventDefault).
+// Lead capture — the main pipeline: uploads media to Firebase Storage,
+// then sends one JSON POST to the newLead endpoint. Submit is always
+// intercepted (preventDefault); a parallel fire-and-forget copy also
+// goes to Formspree via fetch (fields only, no file upload).
 (function () {
   "use strict";
 
@@ -55,6 +56,25 @@
       });
   }
 
+  // שליחה מקבילה ל-Formspree, fire-and-forget: כשל או איטיות כאן
+  // לא משפיעים על מסלול newLead, על העלאת המדיה או על הודעת ההצלחה.
+  // קבצים מצורפים לא נשלחים - רק שם הקובץ כטקסט בשדה file.
+  function sendToFormspree(form, fileName) {
+    try {
+      var fd = new FormData(form);
+      fd.delete("file");
+      if (fileName) fd.set("file", fileName);
+      fetch("https://formspree.io/f/xzblzkye", {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: fd,
+        keepalive: true,
+      }).catch(function () {});
+    } catch (err) {
+      /* מבודד במכוון */
+    }
+  }
+
   function send(payload) {
     return fetch(API, {
       method: "POST",
@@ -70,7 +90,7 @@
     form.dataset.leadCapture = "1";
 
     form.addEventListener("submit", function (e) {
-      e.preventDefault(); // תמידי - אין יותר שליחה ל-Formspree
+      e.preventDefault(); // תמידי - Formspree נשלח ב-fetch מקביל, לא ב-submit רגיל
       var btn = form.querySelector(
         'input[type="submit"], button[type="submit"]');
       if (btn) btn.disabled = true;
@@ -97,6 +117,15 @@
         }
         return true;
       });
+
+      // מסלול מקביל ל-Formspree - לא ממתינים לו ולא תלויים בו
+      sendToFormspree(
+        form,
+        files
+          .map(function (f) {
+            return f.name;
+          })
+          .join(", "));
 
       var uploads = Promise.resolve([]);
       if (files.length && storage) {
