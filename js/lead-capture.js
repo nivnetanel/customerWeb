@@ -8,7 +8,41 @@
   var API =
     "https://europe-west1-my-nimni.cloudfunctions.net/newLead?key=nimni2026lead";
   var BIZ_PHONE = "0542-426-661";
+  // הוואטסאפ העסקי - אותו מספר של כפתורי הוואטסאפ באתר
+  var BIZ_WA = "972542426661";
   var MAX_FILE = 300 * 1024 * 1024; // עד 300MB - כמו טופס הסקר
+
+  // המשך בוואטסאפ (26.09.2026): אחרי שהטופס נקלט, הלקוח עובר
+  // לוואטסאפ של נימני עם ההודעה כבר כתובה. ברגע שהוא לוחץ "שלח"
+  // שם, המערכת מקבלת את הוואטסאפ שלו ויכולה לענות לו אוטומטית -
+  // מטופס לבד אי אפשר לפתוח שיחת וואטסאפ. השורה הראשונה היא
+  // הסימון שהשרת מזהה ("פנייה מהאתר").
+  function whatsappUrl(payload) {
+    var lines = ["🌐 פנייה מהאתר"];
+    if (payload.name) lines.push("שם: " + payload.name);
+    if (payload.phone) lines.push("טלפון: " + payload.phone);
+    if (payload.message) lines.push(payload.message);
+    if (payload.itemsList) lines.push("רשימת פריטים: " + payload.itemsList);
+    return (
+      "https://wa.me/" + BIZ_WA + "?text=" +
+      encodeURIComponent(lines.join("\n")));
+  }
+
+  // כפתור "המשך בוואטסאפ" ליד הודעת התודה - למקרה שהמעבר האוטומטי
+  // נחסם או שהלקוח חזר לדף
+  function showWhatsappButton(form, url) {
+    var old = form.querySelector(".wa-continue");
+    if (old) old.remove();
+    var a = document.createElement("a");
+    a.className = "btn btn-custom wa-continue";
+    a.href = url;
+    a.target = "_blank";
+    a.rel = "noreferrer";
+    a.style.marginTop = "10px";
+    a.style.display = "inline-block";
+    a.textContent = "המשך בוואטסאפ";
+    form.appendChild(a);
+  }
 
   var storage = null;
   if (typeof firebase !== "undefined") {
@@ -133,10 +167,18 @@
         uploads = Promise.all(files.map(uploadFile));
       }
 
+      var waUrl = whatsappUrl(payload);
       var done = function () {
         if (btn) btn.disabled = false;
         form.reset();
-        setStatus(form, "תודה! הפרטים התקבלו — נחזור אליכם בהקדם.");
+        setStatus(form,
+          "תודה! הפרטים התקבלו — ממשיכים בוואטסאפ, לחצו שם על שלח.");
+        showWhatsappButton(form, waUrl);
+        // מעבר אוטומטי לוואטסאפ עם ההודעה המוכנה: בסלולר נפתחת
+        // האפליקציה, במחשב וואטסאפ ווב
+        setTimeout(function () {
+          window.location.href = waUrl;
+        }, 600);
       };
       var failed = function () {
         if (btn) btn.disabled = false;
