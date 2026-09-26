@@ -44,6 +44,41 @@
     form.appendChild(a);
   }
 
+  // סימון האתר על כפתורי הוואטסאפ (26.09.2026): כל קישור וואטסאפ
+  // באתר (כפתור צף, כותרת, פוטר) מקבל שורה ראשונה "🌐 פנייה מהאתר"
+  // מעל הטקסט הקיים, כדי שהמערכת תדע שהלקוח הגיע מהאתר גם כשלא
+  // מילא טופס. הטקסט שהלקוח רואה נשאר, רק עם השורה הזאת מעליו.
+  var SITE_MARKER = "🌐 פנייה מהאתר";
+  var DEFAULT_WA_TEXT = "היי😀 אשמח לברר לגבי הובלה";
+  function markWhatsappLinks() {
+    var links = document.querySelectorAll(
+      'a[href*="api.whatsapp.com/send"], a[href*="wa.me/"]');
+    for (var i = 0; i < links.length; i++) {
+      var href = links[i].getAttribute("href") || "";
+      var m = /[?&]text=([^&#]*)/.exec(href);
+      var text = "";
+      if (m) {
+        try {
+          text = decodeURIComponent(m[1].replace(/\+/g, " "));
+        } catch (err) {
+          text = "";
+        }
+      }
+      if (text.indexOf(SITE_MARKER) === 0) continue;
+      var marked = SITE_MARKER + "\n" + (text || DEFAULT_WA_TEXT);
+      var base = href.replace(/[?&]text=[^&#]*/, "");
+      if (base.indexOf("?") === -1) base = base.replace("&", "?");
+      var sep = base.indexOf("?") === -1 ? "?" : "&";
+      links[i].setAttribute(
+        "href", base + sep + "text=" + encodeURIComponent(marked));
+    }
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", markWhatsappLinks);
+  } else {
+    markWhatsappLinks();
+  }
+
   var storage = null;
   if (typeof firebase !== "undefined") {
     firebase.initializeApp({
