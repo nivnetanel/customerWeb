@@ -12,20 +12,40 @@
   var BIZ_WA = "972542426661";
   var MAX_FILE = 300 * 1024 * 1024; // עד 300MB - כמו טופס הסקר
 
+  // חתימה נסתרת (26.09.2026): כל הודעת וואטסאפ שהאתר מכין מקבלת
+  // בסופה תווים ברוחב אפס שהלקוח לא רואה - חתימה קבועה ואחריה
+  // 4 תווים שמקודדים את הדף (0 = U+200B, 1 = U+200C). השרת מזהה
+  // לפיהם שהפנייה הגיעה מהאתר ומאיזה דף, בלי שום טקסט גלוי.
+  var MARK_SIG = "⁠‍⁠";
+  var PAGE_CODES = {
+    index: 0, about: 1, services: 2, contact: 3,
+    "apartment-transfer-page": 4, "office-transfer-page": 5,
+    "crane-transfer-page": 6, "single-item-page": 7, "storage-page": 8,
+    "packing-page": 9, gallery: 10,
+  };
+  function siteMark() {
+    var code = PAGE_CODES[pageId()];
+    if (typeof code !== "number") code = 15;
+    var bits = "";
+    for (var b = 3; b >= 0; b--) {
+      bits += (code >> b) & 1 ? "‌" : "​";
+    }
+    return MARK_SIG + bits + "⁠";
+  }
+
   // המשך בוואטסאפ (26.09.2026): אחרי שהטופס נקלט, הלקוח עובר
   // לוואטסאפ של נימני עם ההודעה כבר כתובה. ברגע שהוא לוחץ "שלח"
   // שם, המערכת מקבלת את הוואטסאפ שלו ויכולה לענות לו אוטומטית -
-  // מטופס לבד אי אפשר לפתוח שיחת וואטסאפ. השורה הראשונה היא
-  // הסימון שהשרת מזהה ("פנייה מהאתר").
+  // מטופס לבד אי אפשר לפתוח שיחת וואטסאפ.
   function whatsappUrl(payload) {
-    var lines = ["🌐 פנייה מהאתר"];
+    var lines = ["שלום, אשמח להצעת מחיר:"];
     if (payload.name) lines.push("שם: " + payload.name);
     if (payload.phone) lines.push("טלפון: " + payload.phone);
     if (payload.message) lines.push(payload.message);
     if (payload.itemsList) lines.push("רשימת פריטים: " + payload.itemsList);
     return (
       "https://wa.me/" + BIZ_WA + "?text=" +
-      encodeURIComponent(lines.join("\n")));
+      encodeURIComponent(lines.join("\n") + siteMark()));
   }
 
   // כפתור "המשך בוואטסאפ" ליד הודעת התודה - למקרה שהמעבר האוטומטי
@@ -44,11 +64,9 @@
     form.appendChild(a);
   }
 
-  // סימון האתר על כפתורי הוואטסאפ (26.09.2026): כל קישור וואטסאפ
-  // באתר (כפתור צף, כותרת, פוטר) מקבל שורה ראשונה "🌐 פנייה מהאתר"
-  // מעל הטקסט הקיים, כדי שהמערכת תדע שהלקוח הגיע מהאתר גם כשלא
-  // מילא טופס. הטקסט שהלקוח רואה נשאר, רק עם השורה הזאת מעליו.
-  var SITE_MARKER = "🌐 פנייה מהאתר";
+  // כפתורי הוואטסאפ של האתר (כפתור צף, כותרת, פוטר): הטקסט שהלקוח
+  // רואה נשאר בדיוק כמו שהוא, ורק החתימה הנסתרת מתווספת בסופו, כדי
+  // שהמערכת תדע שהלקוח הגיע מהאתר גם כשלא מילא טופס.
   var DEFAULT_WA_TEXT = "היי😀 אשמח לברר לגבי הובלה";
   function markWhatsappLinks() {
     var links = document.querySelectorAll(
@@ -64,8 +82,8 @@
           text = "";
         }
       }
-      if (text.indexOf(SITE_MARKER) === 0) continue;
-      var marked = SITE_MARKER + "\n" + (text || DEFAULT_WA_TEXT);
+      if (text.indexOf(MARK_SIG) !== -1) continue;
+      var marked = (text || DEFAULT_WA_TEXT) + siteMark();
       var base = href.replace(/[?&]text=[^&#]*/, "");
       if (base.indexOf("?") === -1) base = base.replace("&", "?");
       var sep = base.indexOf("?") === -1 ? "?" : "&";
